@@ -4,6 +4,10 @@ import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Textarea } from './ui/textarea'
 import { useToast } from '@/hooks/use-toast'
+import useMarkdown from '@/hooks/use-markdown'
+import {fromMarkdown} from 'mdast-util-from-markdown'
+import {toString} from 'mdast-util-to-string'
+
 
 type Props = {
     onReportConfirmation : (data : string) => void
@@ -90,7 +94,8 @@ const ReportComponent = ({onReportConfirmation}: Props) => {
         
         if(response.ok) {
             const reportText = await response.text();
-            setReportData(reportText);
+            const tree = fromMarkdown(reportText)
+            setReportData(toString(tree));
             setIsLoading(false);
         }
     }
@@ -110,7 +115,7 @@ const ReportComponent = ({onReportConfirmation}: Props) => {
             </Button>
             <Label>Report Summary</Label>
             <Textarea
-                value={reportData}
+                value={reportData} 
                 onChange={(e) => {
                     setReportData(e.target.value)
                 }}
