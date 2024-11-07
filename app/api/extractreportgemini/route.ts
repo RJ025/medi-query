@@ -9,7 +9,7 @@ Go over the the clinical report and identify biomarkers that show slight or larg
 
 
 
-export async function POST(req : Request , res : Response) {
+export async function POST(req : Request) {
     const { base64 } = await req.json()
     const filePart = fileToGenerativePart(base64);
 

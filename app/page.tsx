@@ -8,9 +8,8 @@ import { useToast } from '@/hooks/use-toast'
 import { Settings } from 'lucide-react'
 import React, { useState } from 'react'
 
-type Props = {}
 
-const HomeComponent = (props: Props) => {
+const HomeComponent = () => {
 
   const [reportData , setReportData] = useState("")
   const { toast } = useToast()

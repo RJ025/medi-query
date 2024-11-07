@@ -14,7 +14,7 @@ const model = google('gemini-1.5-pro-latest' , )
 
 const pc = new Pinecone({apiKey : process.env.PINECONE_API_KEY!})
 
-export async function POST(req : Request , res:Response) {
+export async function POST(req : Request) {
     const reqBody = await req.json()
     console.log(reqBody)
     const messages : Message[] = reqBody.messages
